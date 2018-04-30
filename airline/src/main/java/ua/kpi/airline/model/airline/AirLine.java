@@ -53,4 +53,26 @@ public class AirLine {
     public List<Plane> getPlanes() {
         return planes;
     }
+
+    public int getFullCargoWeight(){
+        if (planes != null){
+            int count = 0;
+            for(Plane p:planes){
+                count += p.getMaxCargoCapacity();
+            }
+            return count;
+        }
+        else throw new NullPointerException("Planes is null");
+    }
+
+    public int getFullSeatsCount(){
+        if (planes != null){
+            int count = 0;
+            for(Plane p:planes){
+                count += p.getMaxSeatCapacity();
+            }
+            return count;
+        }
+        else throw new NullPointerException("Planes is null");
+    }
 }
