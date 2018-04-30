@@ -3,10 +3,10 @@ package ua.kpi.airline.model.planes;
 public abstract class Plane {
     private String name;
     private final int maxSeatCapacity;
-    private final int maxFuelCapacity; // Max. fuel capacity in litres
+    private final int maxFuelCapacity; // Max. fuel capacity in kg
     private final int maxCargoCapacity; // Max. cargo capacity in kg
     private final int maxSpeed;  // Max. speed in km per hour
-    private final int maxRangeFullLoad; // Max. range in meters
+    private final int maxRangeFullLoad; // Max. range in km
 
     protected Plane(String name, int maxSeatCapacity, int maxFuelCapacity, int maxCargoCapacity,
                     int maxSpeed, int maxRangeFullLoad){
@@ -42,5 +42,9 @@ public abstract class Plane {
 
     public int getMaxRangeFullLoad() {
         return maxRangeFullLoad;
+    }
+
+    public double getFuelConsumption(){
+        return maxFuelCapacity / maxRangeFullLoad;
     }
 }
