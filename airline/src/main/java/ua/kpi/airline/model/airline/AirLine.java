@@ -15,7 +15,11 @@ public class Airline {
 
     public Airline(String companyName, List<Plane> planes){
         this.companyName = companyName;
-        this.planes = planes;
+        if (planes != null){
+            this.planes = planes;
+        } else {
+            planes = new ArrayList<>();
+        }
     }
 
     public void addPlane(Plane plane){
@@ -57,24 +61,18 @@ public class Airline {
     }
 
     public int getFullCargoWeight(){
-        if (planes != null){
-            int count = 0;
-            for(Plane p:planes){
-                count += p.getMaxCargoCapacity();
-            }
-            return count;
+        int count = 0;
+        for(Plane p:planes){
+            count += p.getMaxCargoCapacity();
         }
-        else throw new NullPointerException("Planes is null");
+        return count;
     }
 
     public int getFullSeatsCount(){
-        if (planes != null){
-            int count = 0;
-            for(Plane p:planes){
-                count += p.getMaxSeatCapacity();
-            }
-            return count;
+        int count = 0;
+        for(Plane p:planes){
+            count += p.getMaxSeatCapacity();
         }
-        else throw new NullPointerException("Planes is null");
+        return count;
     }
 }

@@ -45,6 +45,6 @@ public abstract class Plane {
     }
 
     public double getFuelConsumption(){
-        return maxFuelCapacity / maxRangeFullLoad;
+        return (double)maxFuelCapacity / (double)maxRangeFullLoad;
     }
 }
