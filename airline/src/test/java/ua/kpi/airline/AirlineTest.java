@@ -103,7 +103,7 @@ public class AirlineTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void findPlaneByFuelConsumptionWrongRange() {
+    public void findPlaneByFuelConsumptionInWrongRange() {
         airline.findPlanesByFuelConsumption(10, 5);
     }
 

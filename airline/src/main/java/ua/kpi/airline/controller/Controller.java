@@ -19,6 +19,10 @@ public class Controller {
         this.view = view;
         this.airline = airline;
     }
+
+    /*
+        Первоначальный вывод информации о компании и меню
+     */
     public void init(){
         view.printCompanyInfo(airline);
         view.printMenu();
@@ -26,10 +30,9 @@ public class Controller {
     }
 
     public void getAction(){
-        Scanner sc = new Scanner(System.in);
         int i = getInt();
         switch (i){
-            case 0: {
+            case 0: { // Выход из программы
                 System.exit(0);
             }
             case 1: {
@@ -57,19 +60,25 @@ public class Controller {
         getAction();
     }
 
+    /*
+        Вывод списка самолетов авиакомпании
+     */
     public void showPlanes(){
         view.printPlanesList(airline);
     }
 
+    /*
+        Добавление самолета
+     */
     public void addPlane(){
         boolean check = false;
         int i;
         do {
             view.choosePlaneType();
             i = getInt();
-            if (i == 1){
+            if (i == 1){ // Пассажирский самолет
                 check = true;
-            } else if (i == 2){
+            } else if (i == 2){ // Грузовой самолет
                 check = true;
             }
         } while (!check);
@@ -91,6 +100,9 @@ public class Controller {
         view.printMessage("Самолет добавлен");
     }
 
+    /*
+        Ввод int с клавиатуры
+     */
     private int getInt(){
         Scanner sc = new Scanner(System.in);
         int i;
@@ -102,7 +114,9 @@ public class Controller {
         }
         return i;
     }
-
+    /*
+        Ввод строки с клавиатуры
+     */
     private String getString(){
         Scanner sc = new Scanner(System.in);
         String s = sc.nextLine();
@@ -113,13 +127,16 @@ public class Controller {
         return s;
     }
 
+    /*
+        Сортировка самолетов
+     */
     public void sortPlanes(){
         boolean check = false;
         int i;
         do {
             view.chooseSort();
             i = getInt();
-            if (i == 1){
+            if (i == 1){ // Сортировка по возрастанию
                 check = true;
                 try {
                     airline.sortPlanesByRangeAsc();
@@ -129,7 +146,7 @@ public class Controller {
                 showPlanes();
             } else if (i == 2){
                 check = true;
-                try {
+                try { // Сортировка по убыванию
                     airline.sortPlanesByRangeDesc();
                 } catch(NullPointerException e){
                     view.printMessage(e.getMessage());
@@ -139,6 +156,9 @@ public class Controller {
         } while (!check);
     }
 
+    /*
+        Поиск самолетов
+     */
     public void findPlanes(){
         view.printMessage("Введите минимальное значение расхода топлива (кг/км)");
         int minValue = getInt();
