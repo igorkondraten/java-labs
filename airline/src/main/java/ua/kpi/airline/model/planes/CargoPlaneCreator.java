@@ -5,4 +5,7 @@ public class CargoPlaneCreator implements PlaneCreator {
                              int maxSpeed, int maxRangeFullLoad) {
         return new CargoPlane(name, maxSeatCapacity, maxFuelCapacity,maxCargoCapacity, maxSpeed, maxRangeFullLoad);
     }
+    public Plane createPlane(PlaneEnum p) {
+        return new CargoPlane(p.getName(), p.getMaxSeatCapacity(), p.getMaxFuelCapacity(), p.getMaxCargoCapacity(), p.getMaxSpeed(), p.getMaxRangeFullLoad());
+    }
 }
