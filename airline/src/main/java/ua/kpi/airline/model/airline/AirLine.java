@@ -5,15 +5,15 @@ import ua.kpi.airline.model.planes.Plane;
 import java.util.*;
 import java.util.stream.Collectors;
 
-public class AirLine {
+public class Airline {
     private String companyName;
     private List<Plane> planes = new ArrayList<>();
 
-    public AirLine(String companyName){
+    public Airline(String companyName){
         this.companyName = companyName;
     }
 
-    public AirLine(String companyName, List<Plane> planes){
+    public Airline(String companyName, List<Plane> planes){
         this.companyName = companyName;
         this.planes = planes;
     }
@@ -23,8 +23,10 @@ public class AirLine {
     }
 
     public void deletePlane(Plane plane){
-        if (this.planes != null && this.planes.indexOf(plane) != -1) this.planes.remove(plane);
-        else throw new RuntimeException("Plane not found");
+        if (this.planes != null){
+            if (this.planes.indexOf(plane) != -1) this.planes.remove(plane);
+            else throw new NoSuchElementException("Plane not found");
+        } else throw new NullPointerException("Planes is null");
     }
 
     public void sortPlanesByRangeAsc(){
@@ -39,11 +41,11 @@ public class AirLine {
         } else throw new NullPointerException("Planes is null");
     }
 
-    public List<Plane> findPlaneByFuelConsumption(int minValue, int maxValue){
+    public List<Plane> findPlanesByFuelConsumption(int minValue, int maxValue){
         if (minValue <= maxValue){
             return planes.stream().filter(p -> p.getFuelConsumption() >= minValue && (p.getFuelConsumption()) <= maxValue).collect(Collectors.toList());
         }
-        else throw new RuntimeException("Неверный диапазон значений");
+        else throw new IllegalArgumentException("Неверный диапазон значений");
     }
 
     public String getCompanyName() {

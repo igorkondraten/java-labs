@@ -1,6 +1,6 @@
 package ua.kpi.airline;
 
-import ua.kpi.airline.model.airline.AirLine;
+import ua.kpi.airline.model.airline.Airline;
 import ua.kpi.airline.model.planes.PassengerPlaneCreator;
 import ua.kpi.airline.model.planes.Plane;
 import ua.kpi.airline.model.planes.PlaneCreator;
@@ -14,7 +14,7 @@ public class App
         Plane plane = creator.createPlane("Plane1", 5, 170000, 200, 300, 2000);
         Plane plane1 = creator.createPlane("Plane2", 5, 150000, 200, 300, 2300);
         Plane plane2 = creator.createPlane("Plane3", 5, 100000, 200, 300, 1500);
-        AirLine airline = new AirLine("Українська авіакомпанія");
+        Airline airline = new Airline("Українська авіакомпанія");
         airline.addPlane(plane);
         airline.addPlane(plane1);
         airline.addPlane(plane2);
@@ -22,6 +22,6 @@ public class App
         System.out.println(airline.getCompanyName());
         View view = new View();
         airline.getPlanes().forEach(p -> view.printPlane(p));
-        airline.findPlaneByFuelConsumption(60, 1);
+        view.printMessage(Integer.toString(airline.getFullCargoWeight()));
     }
 }
